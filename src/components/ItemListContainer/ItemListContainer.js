@@ -1,10 +1,33 @@
 import React from 'react'
-import "./Style.css"
-import { greeting } from './Var'
+import { useParams } from 'react-router-dom';
+import Cards from '../Cards/Cards';
+import { data } from '../Cards/Data'
+import { Link } from 'react-router-dom';
 
 const ItemListContainer = () => {
+
+  
+  const {titulo} = useParams ()
+  const {categoria} = useParams ()
+  
+  const dataFiltrada = titulo ? data.filter ((a) => a.titulo === titulo) : categoria ? data.filter ((a) => a.categoria === categoria) : data
+  
+
   return (
-          <h3 className="text-light text">{greeting}</h3>
+    
+    dataFiltrada.map(({img, titulo, artista, precio}, index ) => (
+      <Link to={`/item/detail/${titulo}`}>
+        <Cards
+        key={index}
+        img={img}
+        titulo={titulo}
+        artista={artista}
+        precio={precio}
+        
+        />
+        </Link>  
+        ))
+      
   )
 }
 

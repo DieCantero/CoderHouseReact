@@ -1,12 +1,17 @@
-import React from 'react'
-
+import React, {useState} from 'react'
 
 
 const CartWidget = () => {
+
+  const [counter, setCounter] = useState(0)
+  
+  const sumar = () => setCounter(counter + 1)
+
   return (
+
     <div>
         <i className="bi bi-cart3 d-inline-block"></i>
-        <span>0 </span>
+        <span> {counter}</span>
     </div>
     
   )
